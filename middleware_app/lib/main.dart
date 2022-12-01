@@ -5,7 +5,15 @@ import 'package:middleware_app/signaling.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    // Replace with actual values
+    options: const FirebaseOptions(
+      apiKey: "XXX",
+      appId: "XXX",
+      messagingSenderId: "XXX",
+      projectId: "middleware-5d4b6",
+    ),
+  );
   runApp(const MyApp());
 }
 
