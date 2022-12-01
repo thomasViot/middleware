@@ -3,18 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:middleware_app/signaling.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    // Replace with actual values
-    options: const FirebaseOptions(
-      apiKey: "AIzaSyAbkCJKFWQGp0YRzb8cXCMNVMmbotQ0CJI",
-      authDomain: "middleware-5d4b6.firebaseapp.com",
-      appId: "1:451569691926:web:7e4f97ad316377e688f437",
-      messagingSenderId: "451569691926",
-      projectId: "middleware-5d4b6",
-    ),
-  );
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      // Replace with actual values
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAbkCJKFWQGp0YRzb8cXCMNVMmbotQ0CJI",
+        appId: "1:451569691926:web:7e4f97ad316377e688f437",
+        messagingSenderId: "451569691926",
+        projectId: "middleware-5d4b6",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   runApp(const MyApp());
 }
 
